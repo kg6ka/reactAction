@@ -61,7 +61,7 @@
 	
 	var _AwesomeComponent2 = _interopRequireDefault(_AwesomeComponent);
 	
-	var _HeaderComponent = __webpack_require__(/*! ./components/HeaderComponent.jsx */ 174);
+	var _HeaderComponent = __webpack_require__(/*! ./components/HeaderComponent.jsx */ 173);
 	
 	var _HeaderComponent2 = _interopRequireDefault(_HeaderComponent);
 	
@@ -94,7 +94,7 @@
 	                    ' Hello React!'
 	                ),
 	                _react2.default.createElement(_AwesomeComponent2.default, null),
-	                _react2.default.createElement(_HeaderComponent2.default, null)
+	                _react2.default.createElement(_HeaderComponent2.default, { 'x-try': '123' })
 	            );
 	        }
 	    }]);
@@ -22061,8 +22061,7 @@
 	exports.default = AwesomeComponent;
 
 /***/ },
-/* 173 */,
-/* 174 */
+/* 173 */
 /*!*******************************************************!*\
   !*** ./src/client/app/components/HeaderComponent.jsx ***!
   \*******************************************************/
@@ -22142,6 +22141,15 @@
 	            console.log("Text field value is: '" + this.state.value + "'");
 	        }
 	    }, {
+	        key: 'logo',
+	        value: function logo(props) {
+	            return _react2.default.createElement(
+	                'h1',
+	                { id: 'logo' },
+	                props
+	            );
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -22150,10 +22158,11 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container' },
+	                    this.logo('Logo'),
 	                    _react2.default.createElement(
-	                        'h1',
-	                        { id: 'logo' },
-	                        'Logo'
+	                        'div',
+	                        null,
+	                        this.props['x-try']
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',

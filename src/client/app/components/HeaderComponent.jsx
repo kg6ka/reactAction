@@ -32,11 +32,16 @@ class HeaderComponent extends React.Component  {
         console.log("Text field value is: '" + this.state.value + "'");
     }
 
+    logo(props) {
+        return <h1 id="logo">{props}</h1>
+    }
+
     render() {
         return (
             <header className="header">
                 <div className="container">
-                    <h1 id="logo">Logo</h1>
+                    {this.logo('Logo')}
+                    <div>{this.props['x-try']}</div>
                     <div className="holder">
                         {this.navList(nav)}
                         <div>

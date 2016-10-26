@@ -10,7 +10,7 @@ class App extends React.Component {
             <div>
                 <p> Hello React!</p>
                 <AwesomeComponent />
-                <HeaderComponent />
+                <HeaderComponent x-try="123"/>
             </div>
         );
     }

@@ -6,6 +6,10 @@ var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 var config = {
   entry: APP_DIR + '/index.jsx',
+  devServer: {
+    inline:true,
+    port: 6969
+  },
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
