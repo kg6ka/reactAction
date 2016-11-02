@@ -5,10 +5,15 @@ var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 var config = {
-  entry: APP_DIR + '/index.jsx',
+  entry: {
+    app: [
+      APP_DIR + '/index.jsx'
+    ]
+  },
   devServer: {
-    inline:true,
-    port: 6969
+    inline: true,
+    host: '0.0.0.0',
+    port: 80
   },
   output: {
     path: BUILD_DIR,

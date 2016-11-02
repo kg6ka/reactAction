@@ -8,7 +8,7 @@ class App extends React.Component {
     render () {
         return (
             <div>
-                <p> Hello React!</p>
+              <p> Hello React!</p>
                 <AwesomeComponent />
                 <HeaderComponent x-try="123"/>
             </div>
