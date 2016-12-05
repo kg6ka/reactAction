@@ -1,15 +1,25 @@
 import React from 'react';
 
+import Navigation from './nav.model.jsx';
+import TabList from './tabListComponent.jsx';
+
 let nav = ['menu', 'contact', 'about us'];
+let tablist = ['jake', 'bone', 'donald'];
 
 class HeaderComponent extends React.Component  {
 
     constructor(props) {
         super(props);
-        this.state = {value: ""};
+        console.log(this.props);
+        this.state = {
+            value: '',
+            selectedIdx: 0
+        };
         this.navItem = this.navItem.bind(this);
         this.navList = this.navList.bind(this);
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this._handleAction = this._handleAction.bind(this);
+        this.isActive = this.isActive.bind(this);
     }
 
     navItem(props) {
@@ -29,11 +39,40 @@ class HeaderComponent extends React.Component  {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
         console.log("Text field value is: '" + this.state.value + "'");
     }
 
     logo(props) {
         return <h1 id="logo">{props}</h1>
+    }
+
+    _handleAction(e, selectedIdx) {
+        e.preventDefault();
+        this.setState({selectedIdx});
+    }
+
+    isActive(id) {
+        return this.state.selectedIdx === id;
+    }
+
+    toggleAction() {
+        console.log(this.state.selectedIdx + 1 % this.props.numLimit)
+        this.setState({selectedIdx: (this.state.selectedIdx + 1) % this.props.numLimit});
+    }
+
+    get searchForm() {
+        return (
+            <form onSubmit={this.handleSubmit.bind(this)} noValidate="noValidate">
+                <input type="text"
+                       placeholder="Search"
+                       id="search"
+                       value={this.state.value}
+                       onChange={this.handleChange}
+                />
+                <button type="submit">Search</button>
+            </form>
+        )
     }
 
     render() {
@@ -43,17 +82,13 @@ class HeaderComponent extends React.Component  {
                     {this.logo('Logo')}
                     <div>{this.props['x-try']}</div>
                     <div className="holder">
-                        {this.navList(nav)}
-                        <div>
-                            <input type="text"
-                                   placeholder="Search"
-                                   id="search"
-                                   value={this.state.value}
-                                   onChange={this.handleChange}
-                            />
-                            <button onClick={this.handleSubmit.bind(this)} type="button">Search</button>
-                        </div>
+                        <Navigation list={nav}
+                                    isActive={this.isActive}
+                                    action={this._handleAction}/>
+                        {this.searchForm}
+                        <TabList isActive={this.isActive} tabList={tablist}/>
                     </div>
+                    <button type="button" className="btn" onClick={this.toggleAction.bind(this)}>ToggleBtn</button>
                 </div>
             </header>
         );

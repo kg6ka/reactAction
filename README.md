@@ -17,6 +17,11 @@ touch webpack.config.js
 ```bash
 npm i babel-loader babel-preset-es2015 babel-preset-react -S
 ```
+##if cannot find module babel-core
+```bash
+npm install --save-dev babel-core
+```
+
 #Install react packages
 ```bash
 npm i react react-dom -S
