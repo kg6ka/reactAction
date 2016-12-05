@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import Navigation from './nav.model.jsx';
 import TabList from './tabListComponent.jsx';
 
 let nav = ['menu', 'contact', 'about us'];
 let tablist = ['jake', 'bone', 'donald'];
+let textInput = null;
 
 class HeaderComponent extends React.Component  {
 
@@ -57,14 +59,17 @@ class HeaderComponent extends React.Component  {
     }
 
     toggleAction() {
-        console.log(this.state.selectedIdx + 1 % this.props.numLimit)
+        // console.log(ReactDOM.findDOMNode(this.refs.input).querySelector("input"))
+        // textInput.focus();
+        this.refs.input.focus();
         this.setState({selectedIdx: (this.state.selectedIdx + 1) % this.props.numLimit});
     }
 
     get searchForm() {
         return (
             <form onSubmit={this.handleSubmit.bind(this)} noValidate="noValidate">
-                <input type="text"
+                <input ref="input"
+                       type="text"
                        placeholder="Search"
                        id="search"
                        value={this.state.value}

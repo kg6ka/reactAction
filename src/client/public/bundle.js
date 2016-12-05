@@ -22140,6 +22140,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
 	var _navModel = __webpack_require__(/*! ./nav.model.jsx */ 180);
 	
 	var _navModel2 = _interopRequireDefault(_navModel);
@@ -22158,6 +22162,7 @@
 	
 	var nav = ['menu', 'contact', 'about us'];
 	var tablist = ['jake', 'bone', 'donald'];
+	var textInput = null;
 	
 	var HeaderComponent = function (_React$Component) {
 	    _inherits(HeaderComponent, _React$Component);
@@ -22240,7 +22245,9 @@
 	    }, {
 	        key: 'toggleAction',
 	        value: function toggleAction() {
-	            console.log(this.state.selectedIdx + 1 % this.props.numLimit);
+	            // console.log(ReactDOM.findDOMNode(this.refs.input).querySelector("input"))
+	            // textInput.focus();
+	            this.refs.input.focus();
 	            this.setState({ selectedIdx: (this.state.selectedIdx + 1) % this.props.numLimit });
 	        }
 	    }, {
@@ -22281,7 +22288,8 @@
 	            return _react2.default.createElement(
 	                'form',
 	                { onSubmit: this.handleSubmit.bind(this), noValidate: 'noValidate' },
-	                _react2.default.createElement('input', { type: 'text',
+	                _react2.default.createElement('input', { ref: 'input',
+	                    type: 'text',
 	                    placeholder: 'Search',
 	                    id: 'search',
 	                    value: this.state.value,
