@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Navigation from './nav.model.jsx';
 import TabList from './tabListComponent.jsx';
+import Smth from './SomthingComponent.jsx';
 
 let nav = ['menu', 'contact', 'about us'];
 let tablist = ['jake', 'bone', 'donald'];
@@ -62,6 +63,7 @@ class HeaderComponent extends React.Component  {
         // console.log(ReactDOM.findDOMNode(this.refs.input).querySelector("input"))
         // textInput.focus();
         this.refs.input.focus();
+        console.log(this.props)
         this.setState({selectedIdx: (this.state.selectedIdx + 1) % this.props.numLimit});
     }
 
@@ -93,6 +95,7 @@ class HeaderComponent extends React.Component  {
                         {this.searchForm}
                         <TabList isActive={this.isActive} tabList={tablist}/>
                     </div>
+                    <Smth />
                     <button type="button" className="btn" onClick={this.toggleAction.bind(this)}>ToggleBtn</button>
                 </div>
             </header>

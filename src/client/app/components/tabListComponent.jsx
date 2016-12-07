@@ -10,4 +10,17 @@ const TabList = (props) => {
     )
 };
 
+TabList.propTypes = {
+    // tabList: React.PropTypes.arrayOf(React.PropTypes.string)
+    isActive: React.PropTypes.func,
+    tabList(props, propName, component) {
+     if(!(propName in props)) {
+        return new Error(`missing ${propName}`)
+     }
+     if(props[propName].length < 2) {
+        return new Error(`${propName} is too short`)
+     }
+    }
+};
+
 export default TabList;

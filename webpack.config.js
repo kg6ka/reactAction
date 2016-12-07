@@ -20,6 +20,10 @@ var config = {
         test : /\.jsx?/,
         include : APP_DIR,
         loader : 'babel'
+      },
+      { test: /\.css$/,
+        include : APP_DIR + '/styles/',
+        loader: 'style-loader!css-loader'
       }
     ]
   }

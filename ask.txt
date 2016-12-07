@@ -1,0 +1,113 @@
+1. Замыкания в JS? Что такое, как понимаешь?
+2. Примерчики
+        -1) var a = 90100;
+                  function someFunc(){
+                      if(false){
+                          var a = 1;
+                      } else {
+                          var b = 2;
+                      }
+                      console.log(b);
+                      console.log(a); //(1)
+                  }
+                  someFunc(); Ответ//2, undefined
+
+        -2) var myname = "global";
+                function func() {
+                    console.log(myname);
+                    var myname = "local";
+                    console.log(myname);
+                }
+                func(); Ответ//undefined , local
+
+3. В чем разница между Object.getOwnPropertyNames() и Object.keys()?
+    - Object.getOwnPropertyNames() возвращает перечислимые и не перечислимые свойства из объекта или массива.
+    - Object.keys() возвращает перечислимые(enumerable) свойства из объекта или массива.
+4. apply, call и bind - какая между ними разница? Дополнительно если ответит на первое - что такое карринг и реализовать bind руками?
+    Ответ:
+    Методы bind и call/apply близки по синтаксису, но есть важнейшее отличие.
+
+    Методы call/apply вызывают функцию с заданным контекстом и аргументами.
+
+    А bind не вызывает функцию. Он только возвращает «обёртку», которую мы можем вызвать позже, и которая передаст вызов в исходную функцию, с привязанным контекстом.
+
+    Один из вариантов решения -
+
+    function bind(func, context) {
+      return function() {
+        return func.apply(context, arguments);
+      };
+    }
+
+    //использование
+    function f() {
+      console.log( this );
+    }
+
+    var g = bind(f, "Context");
+    g();
+
+5. Потеря контекста - напиши все известные способы решения данной проблемы? Почему так происходит?
+    var data = {
+       message: 'Hi!',
+       send: function () {
+           console.log(this.message);
+       }
+   }
+
+   setTimeout(data.send);
+
+    //Ответ
+    Передать переменную «message», используя замыкания
+    var message = 'Hi!'; // Замкнем переменную
+    var data = {
+      send: function() {
+        console.log( message);
+      }
+    };
+
+    setTimeout(data.send);
+
+    Привязать контекст к функции, которую мы передаем в setTimeout, при помощи bind
+    var data = {
+    	message: 'Привет',
+      send: function() {
+        console.log(this.message);
+      }
+    };
+
+    setTimeout(data.send.bind(data));
+
+    Использовать ES6 классы и стрелочные функции
+    class Data {
+    	message = 'Hi!'
+      send= () => console.log(this.message)
+    };
+
+    var data = new Data();
+
+    setTimeout(data.send);
+
+    Использовать оператор двойное двоеточие
+    var data = {
+    	message: 'Привет!',
+        send: function() {
+            console.log(this.message);
+        }
+    };
+
+    setTimeout(::data.send);
+
+6. Патерн Observer, описание , использование.(Можешь больше по ООП спросить - если нужно)
+/**Angular*/
+1. Что такое MVC и MVVM, разница? Опиши MVC в контексте angular?
+2. Что такое $digest() и как он работает под капотом?
+3. Что такое сервис и фабрика, какая между ними разница?
+4. Что такое промис? Промис в angular?
+    Что в AngularJS вернет вам promise?(Ответ: $http , $timeout, различные методы $q)
+4. Dependency Injection в angular , как устроенно?
+5. Односторонние биндинги и изоляция - привести пример, если можно написать? this и $scope в чем разница?
+6. Директива ng-cloak - что за директива и принцып работы (Ответ: спрятать шаблон при загрузке).
+/**Rest api*/
+1. Основные принципы, требования к архитектуре REST API?
+2. Идемпотентность - что такое? Какие методы идентпотентны?

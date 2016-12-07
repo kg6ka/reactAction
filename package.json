@@ -28,6 +28,8 @@
   },
   "homepage": "https://github.com/kg6ka/reactAction#readme",
   "devDependencies": {
-    "babel-core": "^6.18.2"
+    "babel-core": "^6.18.2",
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1"
   }
 }
